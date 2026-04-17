@@ -2,14 +2,14 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity tb_binarni_u_gray is
+entity tb_binary_to_gray is
 end entity;
 
-architecture sim of tb_binarni_u_gray is
+architecture sim of tb_binary_to_gray is
     signal b : std_logic_vector(3 downto 0) := (others => '0');
     signal g : std_logic_vector(3 downto 0);
 begin
-    uut: entity work.binarni_u_gray port map(b => b, g => g);
+    uut: entity work.binary_to_gray port map(b => b, g => g);
 
     process
     begin

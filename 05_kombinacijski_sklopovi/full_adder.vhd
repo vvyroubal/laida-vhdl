@@ -1,17 +1,17 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Puno zbrajalo (Full Adder)
+-- Full Adder
 -- sum  = a XOR b XOR cin
 -- cout = (a AND b) OR (cin AND (a XOR b))
-entity puno_zbrajalo is
+entity full_adder is
     port (
         a, b, cin : in  std_logic;
         sum, cout : out std_logic
     );
 end entity;
 
-architecture rtl of puno_zbrajalo is
+architecture rtl of full_adder is
     signal ab_xor : std_logic;
 begin
     ab_xor <= a xor b;

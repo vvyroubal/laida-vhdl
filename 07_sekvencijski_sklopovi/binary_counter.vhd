@@ -2,8 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- 4-bitno binarno sinkrono brojilo s sinkronim resetom
-entity binarno_brojilo is
+-- 4-bit synchronous binary counter with synchronous reset
+entity binary_counter is
     port (
         clk : in  std_logic;
         rst : in  std_logic;
@@ -11,7 +11,7 @@ entity binarno_brojilo is
     );
 end entity;
 
-architecture rtl of binarno_brojilo is
+architecture rtl of binary_counter is
     signal count : unsigned(3 downto 0) := (others => '0');
 begin
     process(clk)

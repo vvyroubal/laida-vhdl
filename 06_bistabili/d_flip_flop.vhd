@@ -1,8 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- D bistabil s sinkronim resetom (rising edge triggered)
-entity d_bistabil is
+-- D flip-flop with synchronous reset (rising edge triggered)
+entity d_flip_flop is
     port (
         clk : in  std_logic;
         rst : in  std_logic;
@@ -12,7 +12,7 @@ entity d_bistabil is
     );
 end entity;
 
-architecture rtl of d_bistabil is
+architecture rtl of d_flip_flop is
     signal q_int : std_logic := '0';
 begin
     process(clk)
