@@ -1,16 +1,16 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity tb_d_flip_flop is
+entity tb_d_ff_rst is
 end entity;
 
-architecture sim of tb_d_flip_flop is
+architecture sim of tb_d_ff_rst is
     signal clk, rst, d : std_logic := '0';
     signal q, q_n      : std_logic;
 
     constant T : time := 10 ns;
 begin
-    uut: entity work.d_flip_flop
+    uut: entity work.d_ff_rst
         port map(clk => clk, rst => rst, d => d, q => q, q_n => q_n);
 
     clk <= not clk after T / 2;

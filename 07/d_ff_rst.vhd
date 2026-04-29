@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 -- D flip-flop with synchronous reset (rising edge triggered)
-entity d_flip_flop is
+entity d_ff_rst is
     port (
         clk : in  std_logic;
         rst : in  std_logic;
@@ -12,7 +12,7 @@ entity d_flip_flop is
     );
 end entity;
 
-architecture rtl of d_flip_flop is
+architecture rtl of d_ff_rst is
     signal q_int : std_logic := '0';
 begin
     process(clk)
