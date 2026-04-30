@@ -14,8 +14,15 @@ def sig_shortname(full_name):
 
 
 def tex_label(name):
+    import re
     if name.lower() in ("qn", "q_n", "qbar", "nq"):
         return r"$\bar{\mathrm{Q}}$"
+    # q3 → Q_3, clk2 → CLK_2, etc.
+    m = re.match(r'^([a-zA-Z_]+?)(\d+)$', name)
+    if m:
+        letters = m.group(1).upper().replace("_", "")
+        digit   = m.group(2)
+        return rf"$\mathrm{{{letters}}}_{{{digit}}}$"
     upper = name.upper().replace("_", "")
     return rf"$\mathrm{{{upper}}}$"
 
@@ -78,6 +85,16 @@ def vcd_to_tikztiming(vcd_path):
         return ""
     min_depth = min(len(s.split(".")) for s in all_sigs)
     sig_names = [s for s in all_sigs if len(s.split(".")) == min_depth]
+
+    # Ako testbench eksplicitno izlaže individualne bitove (q3, q2, ...), preskoči bus
+    # signale (npr. q_vec[3:0]) kako bi se izbjegla redundancija.
+    import re as _re
+    short_names = [sig_shortname(s) for s in sig_names]
+    has_bit_signals = any(
+        _re.search(r'\d$', n) and '[' not in n for n in short_names
+    )
+    if has_bit_signals:
+        sig_names = [s for s in sig_names if '[' not in sig_shortname(s)]
 
     # Minimalni vremenski korak = jedna tikz-timing jedinica
     all_times = sorted({t for s in sig_names for t, _ in vcd[s].tv})
