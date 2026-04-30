@@ -14,7 +14,10 @@ def sig_shortname(full_name):
 
 
 def tex_label(name):
-    return name.replace("_", r"\_")
+    if name.lower() in ("qn", "q_n", "qbar", "nq"):
+        return r"$\bar{\mathrm{Q}}$"
+    upper = name.upper().replace("_", "")
+    return rf"$\mathrm{{{upper}}}$"
 
 
 def val_to_sym(v):
