@@ -11,15 +11,15 @@ entity ring_counter is
 end entity;
 
 architecture rtl of ring_counter is
-    signal reg : std_logic_vector(3 downto 0) := "1000";
+    signal reg : std_logic_vector(3 downto 0) := "0001";
 begin
     process(clk)
     begin
         if rising_edge(clk) then
             if rst = '1' then
-                reg <= "1000";
+                reg <= "0001";
             else
-                reg <= reg(0) & reg(3 downto 1);
+                reg <= reg(2 downto 0) & reg(3);
             end if;
         end if;
     end process;

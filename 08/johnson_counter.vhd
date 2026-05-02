@@ -19,7 +19,7 @@ begin
             if rst = '1' then
                 reg <= (others => '0');
             else
-                reg <= (not reg(0)) & reg(3 downto 1);
+                reg <= reg(2 downto 0) & (not reg(3));
             end if;
         end if;
     end process;

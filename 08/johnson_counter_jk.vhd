@@ -13,12 +13,12 @@ architecture rtl of johnson_counter_jk is
     signal reg : std_logic_vector(3 downto 0) := (others => '0');
     signal j3, k3, j2, k2, j1, k1, j0, k0 : std_logic;
 begin
-    -- FF3: J3 = not Q0, K3 = Q0  (J and K swapped -- no inverter gate needed)
-    j3 <= not reg(0);  k3 <= reg(0);
-    -- FF2, FF1, FF0: same as ring counter
-    j2 <= reg(3);  k2 <= not reg(3);
-    j1 <= reg(2);  k1 <= not reg(2);
-    j0 <= reg(1);  k0 <= not reg(1);
+    -- FF0: J0 = not Q3, K0 = Q3  (J and K swapped -- no inverter gate needed)
+    j0 <= not reg(3);  k0 <= reg(3);
+    -- FF1, FF2, FF3: same as ring counter
+    j1 <= reg(0);  k1 <= not reg(0);
+    j2 <= reg(1);  k2 <= not reg(1);
+    j3 <= reg(2);  k3 <= not reg(2);
 
     process(clk)
     begin
@@ -27,10 +27,10 @@ begin
                 reg <= (others => '0');
             else
                 -- JK next-state equation: Q_next = J AND NOT Q OR NOT K AND Q
-                reg(3) <= (j3 and not reg(3)) or (not k3 and reg(3));
-                reg(2) <= (j2 and not reg(2)) or (not k2 and reg(2));
-                reg(1) <= (j1 and not reg(1)) or (not k1 and reg(1));
                 reg(0) <= (j0 and not reg(0)) or (not k0 and reg(0));
+                reg(1) <= (j1 and not reg(1)) or (not k1 and reg(1));
+                reg(2) <= (j2 and not reg(2)) or (not k2 and reg(2));
+                reg(3) <= (j3 and not reg(3)) or (not k3 and reg(3));
             end if;
         end if;
     end process;
