@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- 4-bit ring counter with synchronous reset (right-shift, one-hot)
+-- 4-bit ring counter with synchronous reset (left-shift, one-hot)
 entity ring_counter is
     port (
         clk : in  std_logic;
