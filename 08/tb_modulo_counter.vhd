@@ -15,10 +15,10 @@ begin
         generic map(M => 6)
         port map(clk => clk, rst => rst, q => q_vec);
 
-    q0 <= q_vec(3);
-    q1 <= q_vec(2);
-    q2 <= q_vec(1);
-    q3 <= q_vec(0);
+    q0 <= q_vec(0);
+    q1 <= q_vec(1);
+    q2 <= q_vec(2);
+    q3 <= q_vec(3);
 
     clk <= not clk after T / 2;
 
