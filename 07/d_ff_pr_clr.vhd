@@ -2,7 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 -- D flip-flop with asynchronous preset (active-low) and clear (active-low).
--- PR_N has priority over CLR_N; simultaneous assertion is not permitted.
+-- PR_N has priority over CLR_N; simultaneous assertion is architecturally undefined
+-- but this model resolves it by giving PR_N priority (Q -> '1').
 entity d_ff_pr_clr is
     port (
         clk   : in  std_logic;
