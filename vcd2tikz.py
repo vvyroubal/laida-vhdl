@@ -76,7 +76,7 @@ def build_timing(tv, end_time, unit, clock=False):
 
 
 def build_state_row(sig_names, vcd, global_end, unit):
-    """Generate D{n} decimal-state annotation row when q0–q3 are all present."""
+    """Generate D{n} decimal-state annotation row when ≥2 consecutive q-bit signals are present."""
     import re
     bit_sigs = {}
     for sig in sig_names:
@@ -84,8 +84,10 @@ def build_state_row(sig_names, vcd, global_end, unit):
         m = re.match(r'^q(\d)$', short)
         if m:
             bit_sigs[int(m.group(1))] = sig
-    if not all(b in bit_sigs for b in range(4)):
+    if len(bit_sigs) < 2:
         return None
+
+    n_bits = max(bit_sigs.keys()) + 1
 
     # Merge all bit-signal events into a single timeline {time → {bit: val}}
     timeline = {}
@@ -99,7 +101,7 @@ def build_state_row(sig_names, vcd, global_end, unit):
     prev_label = None
 
     def decode(c):
-        vals = [c.get(b, '0') for b in range(4)]
+        vals = [c.get(b, '0') for b in range(n_bits)]
         return str(sum(int(v) << b for b, v in enumerate(vals))) if all(v in ('0', '1') for v in vals) else '?'
 
     for t in sorted(timeline):
@@ -116,7 +118,9 @@ def build_state_row(sig_names, vcd, global_end, unit):
         if n > 0:
             parts.append(f"{n}D{{{prev_label}}}")
 
-    return r"  {$Q_{3:0}$}    & " + " ".join(parts) + r" \\"
+    msb = n_bits - 1
+    row_label = "{$Q_{" + str(msb) + ":0}$}"
+    return f"  {row_label}    & " + " ".join(parts) + r" \\"
 
 
 def vcd_to_tikztiming(vcd_path):
