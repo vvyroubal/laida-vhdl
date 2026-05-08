@@ -24,10 +24,7 @@ begin
     process
     begin
         rst <= '1';  wait for 2 * T;
-        rst <= '0';
-        wait for 18 * T;   -- one complete period (0..15) + two extra
-        rst <= '1';  wait for T;
-        rst <= '0';  wait for 20 * T;  -- full second period visible
+        rst <= '0';  wait for 18 * T;  -- states 0..15, then wrap to 0, 1, 2
         wait;
     end process;
 end architecture;

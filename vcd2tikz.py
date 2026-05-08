@@ -75,6 +75,50 @@ def build_timing(tv, end_time, unit, clock=False):
     return " ".join(parts)
 
 
+def build_state_row(sig_names, vcd, global_end, unit):
+    """Generate D{n} decimal-state annotation row when q0–q3 are all present."""
+    import re
+    bit_sigs = {}
+    for sig in sig_names:
+        short = sig_shortname(sig).lower()
+        m = re.match(r'^q(\d)$', short)
+        if m:
+            bit_sigs[int(m.group(1))] = sig
+    if not all(b in bit_sigs for b in range(4)):
+        return None
+
+    # Merge all bit-signal events into a single timeline {time → {bit: val}}
+    timeline = {}
+    for b, sig in bit_sigs.items():
+        for t, v in vcd[sig].tv:
+            timeline.setdefault(t, {})[b] = v
+
+    cur = {}
+    parts = []
+    prev_t = 0
+    prev_label = None
+
+    def decode(c):
+        vals = [c.get(b, '0') for b in range(4)]
+        return str(sum(int(v) << b for b, v in enumerate(vals))) if all(v in ('0', '1') for v in vals) else '?'
+
+    for t in sorted(timeline):
+        if prev_label is not None and t > prev_t:
+            n = round((t - prev_t) / unit)
+            if n > 0:
+                parts.append(f"{n}D{{{prev_label}}}")
+        cur.update(timeline[t])
+        prev_label = decode(cur)
+        prev_t = t
+
+    if prev_label is not None:
+        n = round((global_end - prev_t) / unit)
+        if n > 0:
+            parts.append(f"{n}D{{{prev_label}}}")
+
+    return r"  {$Q_{3:0}$}    & " + " ".join(parts) + r" \\"
+
+
 def vcd_to_tikztiming(vcd_path):
     vcd = VCDVCD(vcd_path, store_tvs=True)
     end_time = vcd.endtime
@@ -118,6 +162,10 @@ def vcd_to_tikztiming(vcd_path):
         clock  = is_clock(tv, unit)
         timing = build_timing(tv, global_end, unit, clock=clock)
         rows.append(f"  {label} & {timing} \\\\")
+
+    state_row = build_state_row(sig_names, vcd, global_end, unit)
+    if state_row:
+        rows.append(state_row)
 
     return "\\begin{tikztimingtable}\n" + "\n".join(rows) + "\n\\end{tikztimingtable}"
 
