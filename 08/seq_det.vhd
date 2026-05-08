@@ -1,0 +1,45 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+-- Mealy sequence detector for pattern "1011"
+-- Output Z=1 (combinational) when the pattern is completed on the current clock cycle
+-- State encoding: S0=00, S1=01, S2=10, S3=11
+entity seq_det is
+    port (
+        clk : in  std_logic;
+        rst : in  std_logic;
+        x   : in  std_logic;
+        z   : out std_logic
+    );
+end entity;
+
+architecture rtl of seq_det is
+    signal state : std_logic_vector(1 downto 0) := "00";
+begin
+    -- State register
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if rst = '1' then
+                state <= "00";
+            else
+                case state is
+                    when "00" =>                    -- S0: initial
+                        if x = '1' then state <= "01"; end if;
+                    when "01" =>                    -- S1: got "1"
+                        if x = '0' then state <= "10"; end if;
+                    when "10" =>                    -- S2: got "10"
+                        if x = '1' then state <= "11";
+                        else            state <= "00"; end if;
+                    when "11" =>                    -- S3: got "101"
+                        if x = '1' then state <= "01";
+                        else            state <= "10"; end if;
+                    when others => state <= "00";
+                end case;
+            end if;
+        end if;
+    end process;
+
+    -- Mealy output: combinational, Z=1 when pattern "1011" completes
+    z <= '1' when (state = "11" and x = '1') else '0';
+end architecture;
