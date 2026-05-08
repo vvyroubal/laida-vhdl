@@ -11,15 +11,23 @@ entity sr_latch is
 end entity;
 
 architecture rtl of sr_latch is
+    signal q_int  : std_logic := '0';
+    signal qn_int : std_logic := '1';
 begin
-    process(s, r)
+    process(s, r, q_int, qn_int)
     begin
         if    s = '1' and r = '1' then
-            q <= '0'; qn <= '0';        -- forbidden
+            q_int  <= '0'; qn_int <= '0';   -- forbidden: both outputs driven low
         elsif s = '1' then
-            q <= '1'; qn <= '0';        -- set
+            q_int  <= '1'; qn_int <= '0';   -- set
         elsif r = '1' then
-            q <= '0'; qn <= '1';        -- reset
-        end if;                         -- s=0, r=0: hold
+            q_int  <= '0'; qn_int <= '1';   -- reset
+        else
+            q_int  <= q_int;                -- hold: feedback maintains state
+            qn_int <= qn_int;
+        end if;
     end process;
+
+    q  <= q_int;
+    qn <= qn_int;
 end architecture;
