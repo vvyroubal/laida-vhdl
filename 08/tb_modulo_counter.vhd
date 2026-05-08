@@ -25,10 +25,7 @@ begin
     process
     begin
         rst <= '1';  wait for 2 * T;
-        rst <= '0';
-        wait for 22 * T;   -- 3 full periods of 6 + 4 extra states
-        rst <= '1';  wait for T;
-        rst <= '0';  wait for 5 * T;
+        rst <= '0';  wait for 13 * T;  -- two complete periods (0→5→0→5→0→1)
         wait;
     end process;
 end architecture;
