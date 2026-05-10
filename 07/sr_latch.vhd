@@ -14,7 +14,7 @@ architecture rtl of sr_latch is
     signal q_int  : std_logic := '0';
     signal qn_int : std_logic := '1';
 begin
-    process(s, r, q_int, qn_int)
+    process(s, r)
     begin
         if    s = '1' and r = '1' then
             q_int  <= '0'; qn_int <= '0';   -- forbidden: both outputs driven low
