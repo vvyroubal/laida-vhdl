@@ -21,7 +21,7 @@ begin
     end generate;
 
     sum_ext <= ('0' & unsigned(a)) + ('0' & unsigned(b_xor))
-               + resize(unsigned'("" & sub), N+1);
+               + resize(unsigned(std_logic_vector'(0 => sub)), N+1);
 
     result <= std_logic_vector(sum_ext(N-1 downto 0));
     cout   <= sum_ext(N);
