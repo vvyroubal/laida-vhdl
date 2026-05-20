@@ -8,10 +8,10 @@ kombinacijska logika, zbrajala, multipleksori, dekoderi, bistabili, registri, br
 ## Struktura
 
 ```
-01/   logička vrata, NAND/NOR
-03/   kombinacijska logika
-05/   zbrajala, oduzimala, komparatori, koderi, dekoderi, MUX
-06/   uvod u VHDL — primjeri i testbenchi
+02/   kombinacijska logika — konverzija u Grayev kod
+03/   logičke funkcije, glasačka logika
+04/   minimizirana logička funkcija (K-tablica)
+06/   zbrajala, oduzimala, komparatori, koderi, dekoderi, MUX — uvod u VHDL
 07/   SR, JK, D i T bistabili
 08/   konačni automati (Moore, Mealy)
 09/   registri, prstenasti i Johnsonov brojač, binarni brojači, FSM primjeri
@@ -40,16 +40,50 @@ Za prikaz valnih oblika koristi [GTKWave](https://gtkwave.sourceforge.net/):
 gtkwave wave.vcd
 ```
 
-## Docker (preporučeno za Windows)
-
-Ako imaš Docker, sve možeš pokrenuti bez lokalne instalacije GHDL-a:
+Za automatski prikaz svih signala iz VCD datoteke kao PNG sliku koristi priloženu skriptu:
 
 ```bash
-docker run --rm -v "${PWD}:/workspace" -w /workspace ghdl/ghdl:ubuntu20-llvm-9 \
-    ghdl -a 06/full_adder.vhd 06/tb_full_adder.vhd && \
-    ghdl -e tb_full_adder && \
-    ghdl -r tb_full_adder --vcd=wave.vcd
+python3 vcd2png.py wave.vcd wave.png
 ```
+
+## Docker (preporučeno)
+
+Ako imaš Docker, sve možeš pokrenuti bez lokalne instalacije GHDL-a.
+
+### Izgradnja slike
+
+```bash
+docker build -t laida-sim .
+```
+
+### Pokretanje svih simulacija
+
+```bash
+docker run --rm -v "$(PWD):/workspace" -w /workspace laida-sim make sim
+```
+
+VCD datoteke bit će zapisane u `build/*/`.
+
+### Ručna simulacija jednog primjera unutar kontejnera
+
+```bash
+docker run --rm -v "$(PWD):/workspace" -w /workspace laida-sim \
+    bash -c "mkdir -p build/06 && cd build/06 && \
+             ghdl -a ../../06/full_adder.vhd ../../06/tb_full_adder.vhd && \
+             ghdl -e tb_full_adder && \
+             ghdl -r tb_full_adder --vcd=tb_full_adder.vcd"
+```
+
+## Makefile
+
+Repozitorij sadrži `Makefile` s ciljevima:
+
+| Cilj | Opis |
+|------|------|
+| `make sim` | Pokreće svih 18 testbencha; VCD datoteke u `build/*/` |
+| `make clean` | Briše `build/` direktorij |
+| `make docker-build` | Gradi Docker sliku `laida-sim` |
+| `make docker-sim` | Pokreće `make sim` unutar Docker kontejnera |
 
 ## Veza s udžbenikom
 
