@@ -59,7 +59,7 @@ docker build -t laida-sim .
 ### Pokretanje svih simulacija
 
 ```bash
-docker run --rm -v "$(PWD):/workspace" -w /workspace laida-sim make sim
+docker run --rm -v "$(pwd):/workspace" -w /workspace laida-sim make sim
 ```
 
 VCD datoteke bit će zapisane u `build/*/`.
@@ -67,7 +67,7 @@ VCD datoteke bit će zapisane u `build/*/`.
 ### Ručna simulacija jednog primjera unutar kontejnera
 
 ```bash
-docker run --rm -v "$(PWD):/workspace" -w /workspace laida-sim \
+docker run --rm -v "$(pwd):/workspace" -w /workspace laida-sim \
     bash -c "mkdir -p build/06 && cd build/06 && \
              ghdl -a ../../06/full_adder.vhd ../../06/tb_full_adder.vhd && \
              ghdl -e tb_full_adder && \
