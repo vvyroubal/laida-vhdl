@@ -13,7 +13,7 @@ begin
 
     process
     begin
-        -- all combinations: a, b, cin
+        -- sve kombinacije: a, b, cin
         a<='0'; b<='0'; cin<='0'; wait for 20 ns;
         assert sum='0' and cout='0' report "FAIL: 0+0+0 ocekivano sum=0,cout=0" severity error;
 
