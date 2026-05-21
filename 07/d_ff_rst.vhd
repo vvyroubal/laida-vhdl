@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- D flip-flop with synchronous reset (rising edge triggered)
+-- D bistabil sa sinkronim resetom (uzlazni brid takta)
 entity d_ff_rst is
     port (
         clk : in  std_logic;

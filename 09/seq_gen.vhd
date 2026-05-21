@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Synchronous 6-state Gray-code sequence generator
--- Sequence: 000 -> 001 -> 011 -> 010 -> 110 -> 100 -> 000
--- Unreachable states 101 and 111 both return to 010 (from K-map don't-cares)
+-- Sinkroni generator šestostupnog niza Grayevog kôda
+-- Niz: 000 -> 001 -> 011 -> 010 -> 110 -> 100 -> 000
+-- Nedostižna stanja 101 i 111 vraćaju se na 010 (K-tablica, neodređeni uvjeti)
 entity seq_gen is
     port (
         clk : in  std_logic;

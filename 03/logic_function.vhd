@@ -1,8 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Logic function: f(a,b,c) = (a AND b) OR (NOT a AND c)
--- Example implementation of a Boolean expression with logic gates
+-- Logička funkcija: f(a,b,c) = (a AND b) OR (NOT a AND c)
+-- Primjer implementacije Booleovog izraza logičkim vratima
 entity logic_function is
     port (
         a, b, c : in  std_logic;

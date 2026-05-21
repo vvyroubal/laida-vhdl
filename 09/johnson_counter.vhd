@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- 4-bit Johnson (twisted ring) counter with synchronous reset
+-- 4-bitni Johnsonov (twisted ring) brojač sa sinkronim resetom
 entity johnson_counter is
     port (
         clk : in  std_logic;

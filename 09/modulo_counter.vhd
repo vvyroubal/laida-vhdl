@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- Synchronous modulo-M counter with synchronous reset (default M = 6)
+-- Sinkroni modulo-M brojač sa sinkronim resetom (zadano M = 6)
 entity modulo_counter is
     generic (
         M : positive := 6

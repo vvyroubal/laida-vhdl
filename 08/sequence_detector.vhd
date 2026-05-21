@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Moore FSM: sequence detector for "101"
--- States: S0 (initial), S1 (received '1'),
---         S2 (received '10'), S3 (received '101' -> y='1')
+-- Mooreov KA: detektor niza "101"
+-- Stanja: S0 (početno), S1 (primljeno '1'),
+--         S2 (primljeno '10'), S3 (primljeno '101' -> y='1')
 entity sequence_detector is
     port (
         clk : in  std_logic;

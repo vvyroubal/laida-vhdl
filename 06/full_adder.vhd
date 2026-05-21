@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Full Adder
--- sum  = a XOR b XOR cin
--- cout = (a AND b) OR (cin AND (a XOR b))
+-- Potpuno zbrajalo
+-- zbroj   = a XOR b XOR cin
+-- preljev = (a AND b) OR (cin AND (a XOR b))
 entity full_adder is
     port (
         a, b, cin : in  std_logic;

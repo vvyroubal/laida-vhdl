@@ -1,8 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- 4-bit asynchronous (ripple) binary counter with asynchronous reset
--- Built from T flip-flops; Q(i) clocks the next stage on its falling edge
+-- 4-bitni asinkroni (kaskadni) binarni brojač s asinkronim resetom
+-- Izgrađen od T bistabila; Q(i) okida sljedeći stupanj na silaznom bridu
 entity async_binary_counter is
     port (
         clk : in  std_logic;
@@ -15,7 +15,7 @@ architecture rtl of async_binary_counter is
     signal q_int : std_logic_vector(3 downto 0) := (others => '0');
 begin
 
-    -- Stage 0: clocked by main CLK (falling edge)
+    -- Stupanj 0: okida glavni CLK (silazni brid)
     process(clk, rst)
     begin
         if rst = '1' then
@@ -25,7 +25,7 @@ begin
         end if;
     end process;
 
-    -- Stage 1: clocked by Q0 falling edge (ripple)
+    -- Stupanj 1: okida silazni brid Q0 (kaskada)
     process(q_int(0), rst)
     begin
         if rst = '1' then
@@ -35,7 +35,7 @@ begin
         end if;
     end process;
 
-    -- Stage 2: clocked by Q1 falling edge (ripple)
+    -- Stupanj 2: okida silazni brid Q1 (kaskada)
     process(q_int(1), rst)
     begin
         if rst = '1' then
@@ -45,7 +45,7 @@ begin
         end if;
     end process;
 
-    -- Stage 3: clocked by Q2 falling edge (ripple)
+    -- Stupanj 3: okida silazni brid Q2 (kaskada)
     process(q_int(2), rst)
     begin
         if rst = '1' then

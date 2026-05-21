@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Mealy FSM: sequence detector for "101"
--- States: S0 (initial), S1 (received '1'), S2 (received '10')
--- Output: y='1' in the cycle when the completing '1' is received (S2, x='1')
+-- Mealyev KA: detektor niza "101"
+-- Stanja: S0 (početno), S1 (primljeno '1'), S2 (primljeno '10')
+-- Izlaz: y='1' u taktu kada je primljen završni '1' (S2, x='1')
 entity mealy_detector is
     port (
         clk : in  std_logic;
@@ -35,6 +35,6 @@ begin
         end if;
     end process;
 
-    -- Mealy output: depends on current state AND current input
+    -- Mealyev izlaz: ovisi o trenutnom stanju I trenutnom ulazu
     y <= '1' when state = S2 and x = '1' else '0';
 end architecture;

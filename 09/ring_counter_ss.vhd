@@ -1,8 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- 4-bit self-starting ring counter (synchronous reset)
--- Any non-one-hot state forces the counter to the first valid state (Q0=1).
+-- 4-bitni samopokretajući prstenasti brojač (sinkroni reset)
+-- Svako stanje koje nije one-hot forsira brojač u prvo valjano stanje (Q0=1).
 entity ring_counter_ss is
     port (
         clk : in  std_logic;
@@ -18,12 +18,12 @@ begin
     begin
         if rising_edge(clk) then
             if rst = '1' then
-                reg <= "0001";                          -- first valid state: Q0=1
+                reg <= "0001";                          -- prvo valjano stanje: Q0=1
             elsif reg /= "0001" and reg /= "0010"
               and reg /= "0100" and reg /= "1000" then
-                reg <= "0001";                          -- irregular: force to first state
+                reg <= "0001";                          -- nepravilno: forsiranje u prvo stanje
             else
-                reg <= reg(2 downto 0) & reg(3);        -- normal shift
+                reg <= reg(2 downto 0) & reg(3);        -- normalni pomak
             end if;
         end if;
     end process;

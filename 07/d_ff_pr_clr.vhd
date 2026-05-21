@@ -1,14 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- D flip-flop with asynchronous preset (active-low) and clear (active-low).
--- PR_N has priority over CLR_N; simultaneous assertion is architecturally undefined
--- but this model resolves it by giving PR_N priority (Q -> '1').
+-- D bistabil s asinkronim postavljanjem (aktivno nisko) i brisanjem (aktivno nisko).
+-- PR_N ima prednost pred CLR_N; istodobna aktivacija je arhitekturalno nedefinirana,
+-- ali ovaj model razrješava situaciju davanjem prednosti PR_N (Q -> '1').
 entity d_ff_pr_clr is
     port (
         clk   : in  std_logic;
-        pr_n  : in  std_logic;  -- async preset, active-low: Q -> '1'
-        clr_n : in  std_logic;  -- async clear,  active-low: Q -> '0'
+        pr_n  : in  std_logic;  -- asinkrono postavljanje, aktivno nisko: Q -> '1'
+        clr_n : in  std_logic;  -- asinkrono brisanje,    aktivno nisko: Q -> '0'
         d     : in  std_logic;
         q     : out std_logic;
         q_n   : out std_logic

@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- 4-bit binary to Gray code converter
+-- 4-bitni pretvornik binarnog koda u Grayev kôd
 -- g(n)   = b(n)
 -- g(n-1) = b(n) XOR b(n-1)
 entity binary_to_gray is

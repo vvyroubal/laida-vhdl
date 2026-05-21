@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- 4-bit synchronous binary counter with synchronous reset
+-- 4-bitni sinkroni binarni brojač sa sinkronim resetom
 entity binary_counter is
     port (
         clk : in  std_logic;
