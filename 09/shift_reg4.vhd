@@ -15,7 +15,7 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            reg <= reg(2 downto 0) & d_in;  -- shift left, new bit enters at LSB
+            reg <= reg(2 downto 0) & d_in;  -- pomak ulijevo, novi bit ulazi na LSB
         end if;
     end process;
 

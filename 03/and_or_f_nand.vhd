@@ -7,5 +7,5 @@ begin
     n_a  <= not (a and a);        -- NAND(a, a) = NOT a
     n_ab <= not (a and b);        -- NAND(a, b)
     n_ac <= not (n_a and c);      -- NAND(NOT a, c)
-    f    <= not (n_ab and n_ac);  -- output NAND
+    f    <= not (n_ab and n_ac);  -- izlazna NAND vrata
 end architecture;

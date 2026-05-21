@@ -17,8 +17,8 @@ begin
     begin
         if rising_edge(clk) then
             if t = '1' then
-                q_s <= not q_s;     -- toggle
-            end if;                 -- t=0: hold
+                q_s <= not q_s;     -- promjena stanja
+            end if;                 -- t=0: zadržavanje
         end if;
     end process;
     q  <= q_s;

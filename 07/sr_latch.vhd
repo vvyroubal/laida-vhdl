@@ -17,13 +17,13 @@ begin
     process(s, r)
     begin
         if    s = '1' and r = '1' then
-            q_int  <= '0'; qn_int <= '0';   -- forbidden: both outputs driven low
+            q_int  <= '0'; qn_int <= '0';   -- zabranjeno: oba izlaza nisko
         elsif s = '1' then
-            q_int  <= '1'; qn_int <= '0';   -- set
+            q_int  <= '1'; qn_int <= '0';   -- postavljanje
         elsif r = '1' then
-            q_int  <= '0'; qn_int <= '1';   -- reset
+            q_int  <= '0'; qn_int <= '1';   -- brisanje
         else
-            q_int  <= q_int;                -- hold: feedback maintains state
+            q_int  <= q_int;                -- zadržavanje: povratna veza održava stanje
             qn_int <= qn_int;
         end if;
     end process;

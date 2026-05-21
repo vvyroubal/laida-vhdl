@@ -6,7 +6,7 @@ entity adder_subtractor is
     generic (N : positive := 4);
     port (
         a, b : in  std_logic_vector(N-1 downto 0);
-        sub  : in  std_logic;       -- 0 = add, 1 = subtract
+        sub  : in  std_logic;       -- 0 = zbrajanje, 1 = oduzimanje
         result : out std_logic_vector(N-1 downto 0);
         cout   : out std_logic
     );

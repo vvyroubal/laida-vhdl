@@ -18,12 +18,12 @@ begin
     begin
         if rising_edge(clk) then
             if    s = '1' and r = '1' then
-                null;                       -- forbidden: state unchanged
+                null;                       -- zabranjeno: stanje nepromijenjeno
             elsif s = '1' then
-                q_s <= '1';                 -- set
+                q_s <= '1';                 -- postavljanje
             elsif r = '1' then
-                q_s <= '0';                 -- reset
-            end if;                         -- s=0, r=0: hold
+                q_s <= '0';                 -- brisanje
+            end if;                         -- s=0, r=0: zadržavanje
         end if;
     end process;
     q  <= q_s;
