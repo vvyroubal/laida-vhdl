@@ -1,6 +1,8 @@
 # LAiDA — VHDL primjeri
 
-VHDL izvorni kod uz udžbenik **Logički i aritmetički sklopovi s digitalnim automatima** (LAiDA).
+VHDL izvorni kod uz udžbenik **Digitalna tehnika**.
+
+Udžbenik obrađuje logičku algebru i digitalne automate — od osnovnih logičkih vrata i minimizacije Booleovih funkcija do kombinacijskih sklopova, bistabila, registara, brojača i konačnih automata.
 
 Datoteke su organizirane po poglavljima i pokrivaju sve sklopove koji se obrađuju u knjizi:
 kombinacijska logika, zbrajala, multipleksori, dekoderi, bistabili, registri, brojači i konačni automati.
