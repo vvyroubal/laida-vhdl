@@ -19,7 +19,7 @@ begin
     c_out <= (a and b) or (c_in and (a xor b));
 end architecture;
 
--- ---------------------------------------------------------------------------
+-- ----------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
