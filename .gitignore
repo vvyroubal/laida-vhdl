@@ -1,0 +1,17 @@
+# GHDL kompilacijski i simulacijski artefakti
+
+# Glavni build direktorij iz Makefilea
+build/
+
+# Stray artefakti izvan build/ (npr. ručni ghdl pozivi iz nekog 0N/ direktorija)
+*.o
+e~*.o
+work-obj*.cf
+*.vcd
+*.ghw
+*.fst
+
+# Izvršne datoteke testbench-a (tb_X bez ekstenzije), uz iznimku VHDL izvora
+tb_*
+!tb_*.vhd
+!tb_*.vhdl
