@@ -3,6 +3,7 @@ BUILD := build
 STOPTIME := 10us
 GHDL_FLAGS := --std=08
 
+.DEFAULT_GOAL := sim
 .PHONY: sim clean docker-build docker-sim
 
 sim:
