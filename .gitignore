@@ -1,0 +1,17 @@
+# GHDL compilation and simulation artifacts
+
+# Main build directory from the Makefile
+build/
+
+# Stray artifacts outside build/ (e.g. manual ghdl runs from a 0N/ directory)
+*.o
+e~*.o
+work-obj*.cf
+*.vcd
+*.ghw
+*.fst
+
+# Testbench executables (tb_X without extension), exempting VHDL sources
+tb_*
+!tb_*.vhd
+!tb_*.vhdl
