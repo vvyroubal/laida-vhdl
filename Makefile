@@ -139,6 +139,12 @@ sim:
 	  ghdl -e $(GHDL_FLAGS) tb_semafor && \
 	  ghdl -r $(GHDL_FLAGS) tb_semafor --vcd=tb_semafor.vcd --stop-time=$(STOPTIME)
 
+	@echo "[09] uart_rx"
+	@mkdir -p $(BUILD)/09/uart_rx && cd $(BUILD)/09/uart_rx && \
+	  ghdl -a $(GHDL_FLAGS) ../../../09/uart_rx.vhd ../../../09/tb_uart_rx.vhd && \
+	  ghdl -e $(GHDL_FLAGS) tb_uart_rx && \
+	  ghdl -r $(GHDL_FLAGS) tb_uart_rx --vcd=tb_uart_rx.vcd --stop-time=$(STOPTIME)
+
 	@echo "Sve simulacije završene. VCD datoteke u $(BUILD)/*/."
 
 clean:
