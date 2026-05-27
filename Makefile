@@ -133,6 +133,12 @@ sim:
 	  ghdl -e $(GHDL_FLAGS) tb_seq_gen && \
 	  ghdl -r $(GHDL_FLAGS) tb_seq_gen --vcd=tb_seq_gen.vcd --stop-time=$(STOPTIME)
 
+	@echo "[09] semafor"
+	@mkdir -p $(BUILD)/09/semafor && cd $(BUILD)/09/semafor && \
+	  ghdl -a $(GHDL_FLAGS) ../../../09/semafor.vhd ../../../09/tb_semafor.vhd && \
+	  ghdl -e $(GHDL_FLAGS) tb_semafor && \
+	  ghdl -r $(GHDL_FLAGS) tb_semafor --vcd=tb_semafor.vcd --stop-time=$(STOPTIME)
+
 	@echo "Sve simulacije završene. VCD datoteke u $(BUILD)/*/."
 
 clean:
