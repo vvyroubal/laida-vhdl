@@ -39,7 +39,7 @@ begin
         -- = 1 1 1 1 0 1 0 0 1 0 1 0
         ocekivano_cw := "010100101111";  -- ispisano cw(11) do cw(0)
         assert cw = ocekivano_cw
-            report "Pogrešna kodna riječ: očekivano " &
+            report "Pogresna kodna rijec: ocekivano " &
                    to_string(ocekivano_cw) & ", dobiveno " & to_string(cw)
             severity error;
 
@@ -50,13 +50,13 @@ begin
 
         -- Sindrom mora biti 7 (binarno 0111)
         assert syndrome = "0111"
-            report "Pogrešan sindrom: očekivano 0111, dobiveno " &
+            report "Pogresan sindrom: ocekivano 0111, dobiveno " &
                    to_string(syndrome)
             severity error;
 
         -- Dekoder mora rekonstruirati izvorne podatke
         assert data_out = "10101010"
-            report "Pogrešni rekonstruirani podaci: očekivano 10101010, dobiveno " &
+            report "Pogresni rekonstruirani podaci: ocekivano 10101010, dobiveno " &
                    to_string(data_out)
             severity error;
 
@@ -64,10 +64,10 @@ begin
         cw_err <= cw;
         wait for 5 ns;
         assert syndrome = "0000"
-            report "Sindrom mora biti 0 kada nije ubačena pogreška"
+            report "Sindrom mora biti 0 kada nije ubacena pogreska"
             severity error;
         assert data_out = "10101010"
-            report "Podaci se moraju podudarati s ulazom kada nema pogreške"
+            report "Podaci se moraju podudarati s ulazom kada nema pogreske"
             severity error;
 
         report "Hamming (12,8) koder/dekoder ispravno provjeren" severity note;

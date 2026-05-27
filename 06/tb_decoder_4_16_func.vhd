@@ -36,7 +36,7 @@ begin
             wait for 5 ns;
             assert f = ocekivano(i)
                 report "Minterm " & integer'image(i) &
-                       " daje neočekivani izlaz f"
+                       " daje neocekivani izlaz f"
                 severity error;
         end loop;
         report "Svih 16 ulaznih kombinacija ispravno provjereno"

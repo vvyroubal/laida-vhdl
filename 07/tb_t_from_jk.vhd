@@ -33,22 +33,22 @@ begin
         -- T=0, Q kreće s 0: ostaje 0
         t <= '0';
         wait for period;
-        assert q = '0' report "T=0, Q očekivano 0, dobiveno 1" severity error;
+        assert q = '0' report "T=0, Q ocekivano 0, dobiveno 1" severity error;
 
         -- T=1: prelazi u 1
         t <= '1';
         wait for period;
-        assert q = '1' report "T=1, Q očekivano 1, dobiveno 0" severity error;
+        assert q = '1' report "T=1, Q ocekivano 1, dobiveno 0" severity error;
 
         -- T=0: zadržava 1
         t <= '0';
         wait for period;
-        assert q = '1' report "T=0, Q očekivano 1, dobiveno 0" severity error;
+        assert q = '1' report "T=0, Q ocekivano 1, dobiveno 0" severity error;
 
         -- T=1: prelazi u 0
         t <= '1';
         wait for period;
-        assert q = '0' report "T=1, Q očekivano 0, dobiveno 1" severity error;
+        assert q = '0' report "T=1, Q ocekivano 0, dobiveno 1" severity error;
 
         report "T bistabil iz JK ispravno provjeren" severity note;
         wait;

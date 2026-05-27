@@ -33,22 +33,22 @@ begin
         -- D=0 (Q kreće s 0): ostaje 0
         d <= '0';
         wait for period;
-        assert q = '0' report "D=0 (Q je bio 0), očekivano Q=0" severity error;
+        assert q = '0' report "D=0 (Q je bio 0), ocekivano Q=0" severity error;
 
         -- D=1: postavlja se 1
         d <= '1';
         wait for period;
-        assert q = '1' report "D=1 (Q je bio 0), očekivano Q=1" severity error;
+        assert q = '1' report "D=1 (Q je bio 0), ocekivano Q=1" severity error;
 
         -- D=1: zadržava 1
         d <= '1';
         wait for period;
-        assert q = '1' report "D=1 (Q je bio 1), očekivano Q=1" severity error;
+        assert q = '1' report "D=1 (Q je bio 1), ocekivano Q=1" severity error;
 
         -- D=0: postavlja se 0
         d <= '0';
         wait for period;
-        assert q = '0' report "D=0 (Q je bio 1), očekivano Q=0" severity error;
+        assert q = '0' report "D=0 (Q je bio 1), ocekivano Q=0" severity error;
 
         report "D bistabil iz JK ispravno provjeren" severity note;
         wait;

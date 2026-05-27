@@ -48,7 +48,7 @@ begin
         -- koje kodira bit 1 niza (logička '1').
         wait for 1 ns;
         assert y = ocekivano(1)
-            report "Bit 1 očekivano " & std_logic'image(ocekivano(1)) &
+            report "Bit 1 ocekivano " & std_logic'image(ocekivano(1)) &
                    " dobiveno " & std_logic'image(y)
             severity error;
 
@@ -58,7 +58,7 @@ begin
             wait for 1 ns;
             assert y = ocekivano(i)
                 report "Bit " & integer'image(i) &
-                       " očekivano " & std_logic'image(ocekivano(i)) &
+                       " ocekivano " & std_logic'image(ocekivano(i)) &
                        " dobiveno " & std_logic'image(y)
                 severity error;
         end loop;

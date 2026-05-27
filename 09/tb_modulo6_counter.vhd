@@ -56,7 +56,7 @@ begin
             wait for 1 ns;
             assert q = ciklus(i)
                 report "Korak ciklusa " & integer'image(i) &
-                       ": očekivano neslaganje"
+                       ": ocekivano neslaganje"
                 severity error;
         end loop;
 

@@ -46,7 +46,7 @@ begin
             wait for 10 ns;
             assert seg = ocekivano(i)
                 report "BCD " & integer'image(i) &
-                       " daje neočekivani izlaz segmenata"
+                       " daje neocekivani izlaz segmenata"
                 severity error;
         end loop;
         report "Svih 16 BCD ulaza ispravno provjereno" severity note;

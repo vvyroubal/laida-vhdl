@@ -36,10 +36,10 @@ begin
                     ocekivano := ai + bi + ci;
                     rezultat  := unsigned(c_out & sum);
                     assert to_integer(rezultat) = ocekivano
-                        report "Pogreška zbrajanja: A=" & integer'image(ai) &
+                        report "Pogreska zbrajanja: A=" & integer'image(ai) &
                                " B=" & integer'image(bi) &
                                " Cin=" & integer'image(ci) &
-                               " očekivano=" & integer'image(ocekivano) &
+                               " ocekivano=" & integer'image(ocekivano) &
                                " dobiveno=" & integer'image(to_integer(rezultat))
                         severity error;
                 end loop;

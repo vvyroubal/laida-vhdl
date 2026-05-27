@@ -42,7 +42,7 @@ begin
             wait for 5 ns;
             assert encoded = testovi(i).ocekivano
                 report "Znak '" & testovi(i).slovo & "' (ASCII " &
-                       integer'image(testovi(i).ascii) & ") očekivano " &
+                       integer'image(testovi(i).ascii) & ") ocekivano " &
                        to_string(testovi(i).ocekivano) & ", dobiveno " &
                        to_string(encoded)
                 severity error;
